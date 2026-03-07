@@ -1,3 +1,4 @@
+import React from "react";
 export default function SlotGrid({ slots, selected, onSelect }) {
   return (
     <div className="grid grid-cols-3 gap-3 mt-4">
