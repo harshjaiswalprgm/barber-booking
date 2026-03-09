@@ -165,25 +165,11 @@ export default function Home() {
 
 
       {/* BOOKING */}
-      <section className="py-20 bg-white">
 
-        <h2 className="text-3xl font-bold text-center mb-10">
-          Book Appointment
-        </h2>
-
-        <BookingForm />
-
-      </section>
 
 
       {/* FOOTER */}
-      <footer className="bg-black text-white py-10 text-center">
 
-        <p className="text-gray-400">
-          © 2026 MK Salon. All Rights Reserved.
-        </p>
-
-      </footer>
 
     </div>
   );

@@ -8,6 +8,8 @@ import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import ManageBookings from "./pages/admin/ManageBookings";
 import SalonSettings from "./pages/admin/SalonSettings";
+import Footer from "./components/Footer";
+import BookingForm from "./components/BookingForm";
 
 export default function App() {
   return (
@@ -22,6 +24,9 @@ export default function App() {
             <>
               <Navbar />
               <Home />
+              <BookingForm />
+              <Footer />
+
             </>
           }
         />

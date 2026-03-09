@@ -8,9 +8,9 @@ export default function SlotGrid({ slots, selected, onSelect }) {
           disabled={!slot.available}
           onClick={() => onSelect(slot.time)}
           className={`p-2 rounded text-sm
-            ${!slot.available ? "bg-gray-300 text-gray-500" :
+            ${!slot.available ? "bg-green-300 text-white-500" :
             selected === slot.time ? "bg-black text-white" :
-            "bg-white border"}`}
+            "bg-green border"}`}
         >
           {slot.time}
         </button>
