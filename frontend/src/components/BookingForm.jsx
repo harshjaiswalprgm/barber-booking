@@ -21,7 +21,7 @@ export default function BookingForm() {
     if (!date) return;
 
     axios
-      .get(`http://localhost:5000/api/bookings/slots?date=${date}`)
+      .get(`https://barber-booking-lj43.onrender.com/api/bookings/slots?date=${date}`)
       .then((res) => {
         setSlots(res.data);
       })
@@ -43,7 +43,7 @@ export default function BookingForm() {
       setLoading(true);
 
       await axios.post(
-        "http://localhost:5000/api/bookings",
+        "https://barber-booking-lj43.onrender.com/api/bookings",
         {
           name,
           phone,
@@ -102,7 +102,7 @@ export default function BookingForm() {
             <label className="text-sm text-gray-300">Full Name</label>
             <input
               type="text"
-              placeholder="John Doe"
+              placeholder="Full Name"
               className="w-full mt-1 p-3 rounded-xl bg-white/10 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400"
               value={name}
               onChange={(e) => setName(e.target.value)}
