@@ -21,7 +21,7 @@ export default function BookingForm() {
     if (!date) return;
 
     axios
-      .get(`https://barber-booking-lj43.onrender.com/api/bookings/slots?date=${date}`)
+      .get(`${import.meta.env.VITE_API_UL}/api/bookings/slots?date=${date}`)
       .then((res) => {
         setSlots(res.data);
       })
@@ -43,7 +43,7 @@ export default function BookingForm() {
       setLoading(true);
 
       await axios.post(
-        "https://barber-booking-lj43.onrender.com/api/bookings",
+        `${import.meta.env.VITE_API_URL}/api/bookings`,
         {
           name,
           phone,

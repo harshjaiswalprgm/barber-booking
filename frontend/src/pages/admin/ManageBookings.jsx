@@ -6,7 +6,7 @@ export default function ManageBookings() {
 
   const fetchBookings = () => {
     axios
-      .get("https://barber-booking-lj43.onrender.com/api/bookings/all")
+      .get(`${import.meta.env.VITE_API_URL}/api/bookings/all`)
       .then((res) => setBookings(res.data))
       .catch((err) => console.error(err));
   };
@@ -17,7 +17,7 @@ export default function ManageBookings() {
 
   const updateStatus = async (id, status) => {
     try {
-      await axios.patch(`https://barber-booking-lj43.onrender.com/api/bookings/${id}/status`, {
+      await axios.patch(`${import.meta.env.VITE_API_URL}/api/bookings/${id}/status`, {
         status,
       });
 

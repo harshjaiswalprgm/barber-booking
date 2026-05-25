@@ -26,7 +26,7 @@ export default function SalonSettings() {
   const [enabledSlots, setEnabledSlots] = useState([]);
 
   useEffect(() => {
-    axios.get("https://barber-booking-lj43.onrender.com/api/settings").then((res) => {
+    axios.get(`${import.meta.env.VITE_API_URL}/api/settings`).then((res) => {
       setEnabledSlots(res.data.enabledSlots || []);
     });
   }, []);
@@ -40,7 +40,7 @@ export default function SalonSettings() {
   };
 
   const save = async () => {
-    await axios.put("https://barber-booking-lj43.onrender.com/api/settings", { enabledSlots });
+    await axios.put(`${import.meta.env.VITE_API_URL}/api/settings`, { enabledSlots });
 
     alert("Salon timings updated");
   };
