@@ -1,14 +1,24 @@
 
-require("dotenv").config();
+
 
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+require("dotenv").config();
 
 const app = express();
 
 // ✅ Middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://mkunisexsalon.com",
+      "https://www.mkunisexsalon.com"
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json()); // VERY IMPORTANT for req.body
 
 // ✅ Debug route
