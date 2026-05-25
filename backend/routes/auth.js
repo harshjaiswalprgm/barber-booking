@@ -67,6 +67,188 @@
 
 // module.exports = router;
 
+// const router = require("express").Router();
+// const Admin = require("../models/Admin");
+// const bcrypt = require("bcrypt");
+// const jwt = require("jsonwebtoken");
+
+
+// // ✅ ADMIN LOGIN
+// router.post("/login", async (req, res) => {
+
+//   try {
+
+//     const { email, password } = req.body;
+
+//     // ✅ Validate input
+//     if (!email || !password) {
+
+//       return res.status(400).json({
+//         message: "Email & Password required"
+//       });
+
+//     }
+
+//     console.log("📩 Login attempt:", email);
+
+//     // ✅ Find admin
+//     const admin = await Admin.findOne({ email });
+
+//     if (!admin) {
+
+//       console.log("❌ Admin not found");
+
+//       return res.status(400).json({
+//         message: "Invalid email"
+//       });
+
+//     }
+
+//     console.log("✅ Admin found");
+
+//     let validPassword = false;
+
+//     // ✅ Compare hashed password
+//     try {
+
+//       validPassword = await bcrypt.compare(
+//         password,
+//         admin.password
+//       );
+
+//     } catch (err) {
+
+//       // fallback if old plain password exists
+//       validPassword = password === admin.password;
+
+//     }
+
+//     // ✅ Wrong password
+//     if (!validPassword) {
+
+//       console.log("❌ Wrong password");
+
+//       return res.status(400).json({
+//         message: "Invalid password"
+//       });
+
+//     }
+
+//     console.log("✅ Password correct");
+
+//     // ✅ Generate JWT token
+//     const token = jwt.sign(
+
+//       {
+//         id: admin._id,
+//         role: "admin"
+//       },
+
+//       process.env.JWT_SECRET || "mk_salon_secret",
+
+//       {
+//         expiresIn: "7d"
+//       }
+
+//     );
+
+//     // ✅ Success response
+//     res.status(200).json({
+
+//       message: "Login successful",
+
+//       token,
+
+//       admin: {
+
+//         id: admin._id,
+//         email: admin.email
+
+//       }
+
+//     });
+
+//   } catch (err) {
+
+//     console.error("🔥 LOGIN ERROR:", err);
+
+//     res.status(500).json({
+
+//       message: "Server error"
+
+//     });
+
+//   }
+
+// });
+
+
+// // ✅ CREATE NEW ADMIN
+// router.post("/create-admin", async (req, res) => {
+
+//   try {
+
+//     const { email, password } = req.body;
+
+//     // ✅ Validate
+//     if (!email || !password) {
+
+//       return res.status(400).json({
+//         message: "Email & Password required"
+//       });
+
+//     }
+
+//     // ✅ Check existing
+//     const existingAdmin = await Admin.findOne({ email });
+
+//     if (existingAdmin) {
+
+//       return res.status(400).json({
+//         message: "Admin already exists"
+//       });
+
+//     }
+
+//     // ✅ Hash password
+//     const hashedPassword = await bcrypt.hash(password, 10);
+
+//     // ✅ Create admin
+//     const admin = new Admin({
+
+//       email,
+//       password: hashedPassword
+
+//     });
+
+//     await admin.save();
+
+//     console.log("✅ New admin created");
+
+//     res.status(201).json({
+
+//       message: "Admin created successfully"
+
+//     });
+
+//   } catch (err) {
+
+//     console.error("🔥 CREATE ADMIN ERROR:", err);
+
+//     res.status(500).json({
+
+//       message: "Server error"
+
+//     });
+
+//   }
+
+// });
+
+
+// module.exports = router;
+
+
 const router = require("express").Router();
 const Admin = require("../models/Admin");
 const bcrypt = require("bcrypt");
@@ -106,20 +288,31 @@ router.post("/login", async (req, res) => {
 
     console.log("✅ Admin found");
 
+    // ✅ Password check safety
+    if (!admin.password) {
+
+      return res.status(400).json({
+        message: "Password missing in database"
+      });
+
+    }
+
     let validPassword = false;
 
-    // ✅ Compare hashed password
-    try {
+    // ✅ Plain password support
+    if (!admin.password.startsWith("$2")) {
+
+      validPassword = password === admin.password;
+
+    }
+
+    // ✅ Hashed password support
+    else {
 
       validPassword = await bcrypt.compare(
         password,
         admin.password
       );
-
-    } catch (err) {
-
-      // fallback if old plain password exists
-      validPassword = password === admin.password;
 
     }
 
@@ -136,7 +329,7 @@ router.post("/login", async (req, res) => {
 
     console.log("✅ Password correct");
 
-    // ✅ Generate JWT token
+    // ✅ Generate token
     const token = jwt.sign(
 
       {
@@ -152,7 +345,7 @@ router.post("/login", async (req, res) => {
 
     );
 
-    // ✅ Success response
+    // ✅ Success
     res.status(200).json({
 
       message: "Login successful",
@@ -183,7 +376,7 @@ router.post("/login", async (req, res) => {
 });
 
 
-// ✅ CREATE NEW ADMIN
+// ✅ CREATE ADMIN
 router.post("/create-admin", async (req, res) => {
 
   try {
@@ -199,7 +392,7 @@ router.post("/create-admin", async (req, res) => {
 
     }
 
-    // ✅ Check existing
+    // ✅ Existing admin check
     const existingAdmin = await Admin.findOne({ email });
 
     if (existingAdmin) {
@@ -234,6 +427,51 @@ router.post("/create-admin", async (req, res) => {
   } catch (err) {
 
     console.error("🔥 CREATE ADMIN ERROR:", err);
+
+    res.status(500).json({
+
+      message: "Server error"
+
+    });
+
+  }
+
+});
+
+
+// ✅ RESET ADMIN PASSWORD
+router.get("/reset-admin", async (req, res) => {
+
+  try {
+
+    const hashedPassword = await bcrypt.hash(
+      "123456",
+      10
+    );
+
+    await Admin.updateOne(
+
+      {
+        email: "admin@mksalon.com"
+      },
+
+      {
+        password: hashedPassword
+      }
+
+    );
+
+    res.json({
+
+      message: "Admin password reset successful",
+      email: "admin@mksalon.com",
+      password: "123456"
+
+    });
+
+  } catch (err) {
+
+    console.error("🔥 RESET ADMIN ERROR:", err);
 
     res.status(500).json({
 
