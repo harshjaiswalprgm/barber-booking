@@ -16,7 +16,6 @@ export default function AdminDashboard() {
 
       {/* Content */}
       <div className="relative z-10 p-10 text-white">
-
         {/* Heading */}
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
@@ -29,7 +28,6 @@ export default function AdminDashboard() {
 
         {/* Cards */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-
           {/* Manage Bookings */}
           <motion.a
             whileHover={{ scale: 1.06 }}
@@ -38,20 +36,15 @@ export default function AdminDashboard() {
             className="bg-white/10 backdrop-blur-xl border border-gray-700 p-8 rounded-2xl shadow-xl hover:shadow-yellow-500/30 transition-all duration-300 group"
           >
             <div className="flex flex-col items-center text-center">
-
               <FaCalendarCheck className="text-5xl text-yellow-400 mb-4 group-hover:scale-110 transition" />
 
-              <h2 className="text-xl font-semibold mb-2">
-                Manage Bookings
-              </h2>
+              <h2 className="text-xl font-semibold mb-2">Manage Bookings</h2>
 
               <p className="text-sm text-gray-300">
                 View & control all appointments
               </p>
-
             </div>
           </motion.a>
-
 
           {/* Salon Settings */}
           <motion.a
@@ -61,20 +54,15 @@ export default function AdminDashboard() {
             className="bg-white/10 backdrop-blur-xl border border-gray-700 p-8 rounded-2xl shadow-xl hover:shadow-green-500/30 transition-all duration-300 group"
           >
             <div className="flex flex-col items-center text-center">
-
               <FaCog className="text-5xl text-green-400 mb-4 group-hover:rotate-12 transition" />
 
-              <h2 className="text-xl font-semibold mb-2">
-                Salon Settings
-              </h2>
+              <h2 className="text-xl font-semibold mb-2">Salon Settings</h2>
 
               <p className="text-sm text-gray-300">
                 Control slots & availability
               </p>
-
             </div>
           </motion.a>
-
 
           {/* View Website */}
           <motion.a
@@ -84,22 +72,16 @@ export default function AdminDashboard() {
             className="bg-white/10 backdrop-blur-xl border border-gray-700 p-8 rounded-2xl shadow-xl hover:shadow-blue-500/30 transition-all duration-300 group"
           >
             <div className="flex flex-col items-center text-center">
-
               <FaGlobe className="text-5xl text-blue-400 mb-4 group-hover:scale-110 transition" />
 
-              <h2 className="text-xl font-semibold mb-2">
-                View Website
-              </h2>
+              <h2 className="text-xl font-semibold mb-2">View Website</h2>
 
               <p className="text-sm text-gray-300">
                 Open customer booking page
               </p>
-
             </div>
           </motion.a>
-
         </div>
-
       </div>
     </div>
   );

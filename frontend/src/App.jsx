@@ -21,13 +21,17 @@ export default function App() {
         <Route
           path="/"
           element={
-            <>
+            <div className="bg-black min-h-screen overflow-hidden">
+
               <Navbar />
+
               <Home />
+
               <BookingForm />
+
               <Footer />
 
-            </>
+            </div>
           }
         />
 

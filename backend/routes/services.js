@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// 🔹 Delete service (admin)
+// 🔹 delete service (admin)
 router.delete("/:id", async (req, res) => {
   try {
     await Service.findByIdAndDelete(req.params.id);
