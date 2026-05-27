@@ -1,146 +1,17 @@
-// import React, { useState } from "react";
-
-// export default function Navbar() {
-//   const [open, setOpen] = useState(false);
-
-//   return (
-//     <nav className="fixed w-full top-0 z-50 bg-black/90 backdrop-blur-lg text-white shadow-lg">
-//       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-//         {/* Logo */}
-//         <h1 className="text-2xl font-bold text-yellow-400">MK Salon</h1>
-
-//         {/* Desktop Menu */}
-//         <ul className="hidden md:flex gap-8 font-medium">
-//           <li className="hover:text-yellow-400 cursor-pointer transition">
-//             Home
-//           </li>
-
-//           <li className="hover:text-yellow-400 cursor-pointer transition">
-//             Services
-//           </li>
-
-//           <li className="hover:text-yellow-400 cursor-pointer transition">
-//             About
-//           </li>
-
-//           <li className="hover:text-yellow-400 cursor-pointer transition">
-//             Gallery
-//           </li>
-
-//           <li className="hover:text-yellow-400 cursor-pointer transition">
-//             Contact
-//           </li>
-//         </ul>
-
-//         {/* Book Button */}
-//         <button className="hidden md:block bg-yellow-500 text-black px-5 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition">
-//           Book Now
-//         </button>
-
-//         {/* Mobile Menu Button */}
-//         <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
-//           ☰
-//         </button>
-//       </div>
-
-//       {/* Mobile Menu */}
-//       {open && (
-//         <div className="md:hidden bg-black border-t border-gray-700">
-//           <ul className="flex flex-col items-center gap-6 py-6 text-lg">
-//             <li className="hover:text-yellow-400">Home</li>
-//             <li className="hover:text-yellow-400">Services</li>
-//             <li className="hover:text-yellow-400">About</li>
-//             <li className="hover:text-yellow-400">Gallery</li>
-//             <li className="hover:text-yellow-400">Contact</li>
-
-//             <button className="bg-yellow-500 text-black px-6 py-2 rounded-lg font-semibold">
-//               Book Now
-//             </button>
-//           </ul>
-//         </div>
-//       )}
-//     </nav>
-//   );
-// }
-
-// import React, { useState } from "react";
-
-// export default function Navbar() {
-//   const [open, setOpen] = useState(false);
-
-//   // ✅ scroll function
-//   const scrollToSection = (id) => {
-//     const section = document.getElementById(id);
-//     if (section) {
-//       section.scrollIntoView({ behavior: "smooth" });
-//       setOpen(false); // close mobile menu
-//     }
-//   };
-
-//   return (
-//     <nav className="fixed w-full top-0 z-50 bg-black/90 backdrop-blur-lg text-white shadow-lg">
-//       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-
-//         {/* Logo */}
-//         <h1
-//           className="text-2xl font-bold text-yellow-400 cursor-pointer"
-//           onClick={() => scrollToSection("home")}
-//         >
-//           MK Salon
-//         </h1>
-
-//         {/* Desktop Menu */}
-//         <ul className="hidden md:flex gap-8 font-medium">
-//           <li onClick={() => scrollToSection("home")} className="hover:text-yellow-400 cursor-pointer">Home</li>
-//           <li onClick={() => scrollToSection("services")} className="hover:text-yellow-400 cursor-pointer">Services</li>
-//           <li onClick={() => scrollToSection("about")} className="hover:text-yellow-400 cursor-pointer">About</li>
-//           <li onClick={() => scrollToSection("gallery")} className="hover:text-yellow-400 cursor-pointer">Gallery</li>
-//           <li onClick={() => scrollToSection("contact")} className="hover:text-yellow-400 cursor-pointer">Contact</li>
-//         </ul>
-
-//         {/* Book Button */}
-//         <button
-//           onClick={() => scrollToSection("booking")}
-//           className="hidden md:block bg-yellow-500 text-black px-5 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition"
-//         >
-//           Book Now
-//         </button>
-
-//         {/* Mobile Menu Button */}
-//         <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
-//           ☰
-//         </button>
-//       </div>
-
-//       {/* Mobile Menu */}
-//       {open && (
-//         <div className="md:hidden bg-black border-t border-gray-700">
-//           <ul className="flex flex-col items-center gap-6 py-6 text-lg">
-//             <li onClick={() => scrollToSection("home")} className="hover:text-yellow-400">Home</li>
-//             <li onClick={() => scrollToSection("services")} className="hover:text-yellow-400">Services</li>
-//             <li onClick={() => scrollToSection("about")} className="hover:text-yellow-400">About</li>
-//             <li onClick={() => scrollToSection("gallery")} className="hover:text-yellow-400">Gallery</li>
-//             <li onClick={() => scrollToSection("contact")} className="hover:text-yellow-400">Contact</li>
-
-//             <button
-//               onClick={() => scrollToSection("booking")}
-//               className="bg-yellow-500 text-black px-6 py-2 rounded-lg font-semibold"
-//             >
-//               Book Now
-//             </button>
-//           </ul>
-//         </div>
-//       )}
-//     </nav>
-//   );
-// }
 import React, { useState } from "react";
+import {
+  ChevronDown,
+  Menu,
+  X,
+  Search,
+} from "lucide-react";
 
 export default function Navbar() {
 
   const [open, setOpen] = useState(false);
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
-  // ✅ Smooth scroll
+  // ✅ Smooth Scroll
   const scrollToSection = (id) => {
 
     const section = document.getElementById(id);
@@ -148,7 +19,7 @@ export default function Navbar() {
     if (section) {
 
       section.scrollIntoView({
-        behavior: "smooth"
+        behavior: "smooth",
       });
 
       setOpen(false);
@@ -159,150 +30,261 @@ export default function Navbar() {
 
   return (
 
-    <nav className="fixed w-full top-0 z-50 bg-black/90 backdrop-blur-lg text-white shadow-lg border-b border-gray-800">
+    <nav className="fixed top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl z-50">
 
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      {/* MAIN NAVBAR */}
+      <div className="bg-white/60 backdrop-blur-2xl border border-white/30 rounded-[28px] px-6 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
 
-        {/* Logo */}
-        <h1
-          className="text-2xl font-bold text-yellow-400 cursor-pointer tracking-wide"
-          onClick={() => scrollToSection("home")}
-        >
-          MK Salon
-        </h1>
+        <div className="flex items-center justify-between">
 
+          {/* LEFT */}
+          <div className="flex items-center gap-14">
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-8 font-medium items-center">
+            {/* LOGO */}
+            <div
+              onClick={() => scrollToSection("home")}
+              className="flex items-center gap-4 cursor-pointer group"
+            >
 
-          <li
-            onClick={() => scrollToSection("home")}
-            className="hover:text-yellow-400 cursor-pointer transition"
-          >
-            Home
-          </li>
+              {/* ICON */}
+              <div className="w-11 h-11 rounded-2xl bg-black text-yellow-400 flex items-center justify-center border border-gray-800 shadow-[0_10px_30px_rgba(0,0,0,0.18)] group-hover:scale-105 transition duration-300">
 
-          <li
-            onClick={() => scrollToSection("services")}
-            className="hover:text-yellow-400 cursor-pointer transition"
-          >
-            Services
-          </li>
+                <span className="text-lg">
+                  ✂
+                </span>
 
-          <li
-            onClick={() => scrollToSection("about")}
-            className="hover:text-yellow-400 cursor-pointer transition"
-          >
-            About
-          </li>
+              </div>
 
-          <li
-            onClick={() => scrollToSection("gallery")}
-            className="hover:text-yellow-400 cursor-pointer transition"
-          >
-            Gallery
-          </li>
+              {/* TEXT */}
+              <div>
 
-          <li
-            onClick={() => scrollToSection("contact")}
-            className="hover:text-yellow-400 cursor-pointer transition"
-          >
-            Contact
-          </li>
+                <h1 className="text-[28px] font-black tracking-[-1px] text-black leading-none">
 
-        </ul>
+                  MK
 
+                  <span className="text-gray-600 ml-2 font-bold">
+                    Unisex Salon
+                  </span>
 
-        {/* Right Buttons */}
-        <div className="hidden md:flex items-center gap-4">
+                </h1>
 
-          {/* Admin Button */}
-          <a
-            href="/admin/login"
-            className="border border-yellow-500 text-yellow-400 px-5 py-2 rounded-lg font-semibold hover:bg-yellow-500 hover:text-black transition duration-300"
-          >
-            Admin
-          </a>
+              </div>
 
-          {/* Book Button */}
+            </div>
+
+            {/* DESKTOP MENU */}
+            <ul className="hidden lg:flex items-center gap-9 text-gray-700 font-semibold">
+
+              <li
+                onClick={() => scrollToSection("home")}
+                className="relative cursor-pointer transition duration-300 hover:text-black text-[15px]
+                after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                after:w-0 after:bg-yellow-400 after:transition-all
+                hover:after:w-full"
+              >
+                Home
+              </li>
+
+              <li
+                onClick={() => scrollToSection("services")}
+                className="relative cursor-pointer transition duration-300 hover:text-black text-[15px]
+                after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                after:w-0 after:bg-yellow-400 after:transition-all
+                hover:after:w-full"
+              >
+                Services
+              </li>
+
+              <li
+                onClick={() => scrollToSection("about")}
+                className="relative cursor-pointer transition duration-300 hover:text-black text-[15px]
+                after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                after:w-0 after:bg-yellow-400 after:transition-all
+                hover:after:w-full"
+              >
+                About
+              </li>
+
+              <li
+                onClick={() => scrollToSection("gallery")}
+                className="relative cursor-pointer transition duration-300 hover:text-black text-[15px]
+                after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                after:w-0 after:bg-yellow-400 after:transition-all
+                hover:after:w-full"
+              >
+                Gallery
+              </li>
+
+              <li
+                onClick={() => scrollToSection("contact")}
+                className="relative cursor-pointer transition duration-300 hover:text-black text-[15px]
+                after:absolute after:left-0 after:-bottom-1 after:h-[2px]
+                after:w-0 after:bg-yellow-400 after:transition-all
+                hover:after:w-full"
+              >
+                Contact
+              </li>
+
+              {/* DROPDOWN */}
+              <div className="relative">
+
+                <button
+                  onClick={() => setSettingsOpen(!settingsOpen)}
+                  className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-xl transition duration-300 text-[15px]"
+                >
+
+                  More
+
+                  <ChevronDown
+                    size={16}
+                    className={`transition duration-300 ${
+                      settingsOpen ? "rotate-180" : ""
+                    }`}
+                  />
+
+                </button>
+
+                {/* DROPDOWN MENU */}
+                {settingsOpen && (
+
+                  <div className="absolute top-14 left-0 w-56 bg-white rounded-2xl border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.12)] overflow-hidden">
+
+                    <a
+                      href="/admin/login"
+                      className="block px-6 py-4 hover:bg-gray-100 transition font-medium"
+                    >
+                      Admin Login
+                    </a>
+
+                    <button
+                      onClick={() => scrollToSection("booking")}
+                      className="w-full text-left px-6 py-4 hover:bg-gray-100 transition font-medium"
+                    >
+                      Book Appointment
+                    </button>
+
+                    <button
+                      onClick={() => scrollToSection("services")}
+                      className="w-full text-left px-6 py-4 hover:bg-gray-100 transition font-medium"
+                    >
+                      Pricing
+                    </button>
+
+                  </div>
+
+                )}
+
+              </div>
+
+            </ul>
+
+          </div>
+
+          {/* RIGHT SIDE */}
+          <div className="hidden lg:flex items-center gap-4">
+
+            {/* SEARCH */}
+            <button className="w-11 h-11 rounded-2xl border border-gray-200 bg-white flex items-center justify-center hover:bg-gray-100 transition duration-300">
+
+              <Search
+                size={18}
+                className="text-gray-700"
+              />
+
+            </button>
+
+            {/* AVATAR */}
+            <div className="w-11 h-11 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-black font-black shadow-lg">
+              MK
+            </div>
+
+            {/* BUTTON */}
+            <button
+              onClick={() => scrollToSection("booking")}
+              className="bg-black text-white px-7 py-3 rounded-2xl font-semibold hover:bg-yellow-400 hover:text-black transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.15)]"
+            >
+              Book Now
+            </button>
+
+          </div>
+
+          {/* MOBILE MENU BUTTON */}
           <button
-            onClick={() => scrollToSection("booking")}
-            className="bg-yellow-500 text-black px-5 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition duration-300 shadow-lg"
+            className="lg:hidden text-black"
+            onClick={() => setOpen(!open)}
           >
-            Book Now
+
+            {open ? (
+              <X size={30} />
+            ) : (
+              <Menu size={30} />
+            )}
+
           </button>
 
         </div>
 
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-3xl"
-          onClick={() => setOpen(!open)}
-        >
-          ☰
-        </button>
-
       </div>
 
-
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       {open && (
 
-        <div className="md:hidden bg-black border-t border-gray-700">
+        <div className="lg:hidden mt-4 bg-white/95 backdrop-blur-2xl rounded-[28px] border border-gray-200 shadow-[0_20px_60px_rgba(0,0,0,0.12)] overflow-hidden">
 
-          <ul className="flex flex-col items-center gap-6 py-6 text-lg">
+          <ul className="flex flex-col text-gray-800 font-medium">
 
             <li
               onClick={() => scrollToSection("home")}
-              className="hover:text-yellow-400"
+              className="px-7 py-5 border-b border-gray-100 hover:bg-gray-50 transition"
             >
               Home
             </li>
 
             <li
               onClick={() => scrollToSection("services")}
-              className="hover:text-yellow-400"
+              className="px-7 py-5 border-b border-gray-100 hover:bg-gray-50 transition"
             >
               Services
             </li>
 
             <li
               onClick={() => scrollToSection("about")}
-              className="hover:text-yellow-400"
+              className="px-7 py-5 border-b border-gray-100 hover:bg-gray-50 transition"
             >
               About
             </li>
 
             <li
               onClick={() => scrollToSection("gallery")}
-              className="hover:text-yellow-400"
+              className="px-7 py-5 border-b border-gray-100 hover:bg-gray-50 transition"
             >
               Gallery
             </li>
 
             <li
               onClick={() => scrollToSection("contact")}
-              className="hover:text-yellow-400"
+              className="px-7 py-5 border-b border-gray-100 hover:bg-gray-50 transition"
             >
               Contact
             </li>
 
-            {/* Mobile Admin */}
             <a
               href="/admin/login"
-              className="border border-yellow-500 text-yellow-400 px-6 py-2 rounded-lg font-semibold"
+              className="px-7 py-5 border-b border-gray-100 hover:bg-gray-50 transition"
             >
               Admin Login
             </a>
 
-            {/* Mobile Book */}
-            <button
-              onClick={() => scrollToSection("booking")}
-              className="bg-yellow-500 text-black px-6 py-2 rounded-lg font-semibold"
-            >
-              Book Now
-            </button>
+            <div className="p-5">
+
+              <button
+                onClick={() => scrollToSection("booking")}
+                className="w-full bg-black text-white py-4 rounded-2xl font-semibold hover:bg-yellow-400 hover:text-black transition duration-300"
+              >
+                Book Appointment
+              </button>
+
+            </div>
 
           </ul>
 

@@ -10,6 +10,7 @@ import ManageBookings from "./pages/admin/ManageBookings";
 import SalonSettings from "./pages/admin/SalonSettings";
 import Footer from "./components/Footer";
 import BookingForm from "./components/BookingForm";
+import About from "./components/About";
 
 export default function App() {
   return (
@@ -26,8 +27,11 @@ export default function App() {
               <Navbar />
 
               <Home />
+               <About />
 
               <BookingForm />
+
+
 
               <Footer />
 
