@@ -63,74 +63,255 @@
 //   );
 // }
 
+// import React, { useState } from "react";
+
+// export default function Navbar() {
+//   const [open, setOpen] = useState(false);
+
+//   // ✅ scroll function
+//   const scrollToSection = (id) => {
+//     const section = document.getElementById(id);
+//     if (section) {
+//       section.scrollIntoView({ behavior: "smooth" });
+//       setOpen(false); // close mobile menu
+//     }
+//   };
+
+//   return (
+//     <nav className="fixed w-full top-0 z-50 bg-black/90 backdrop-blur-lg text-white shadow-lg">
+//       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+
+//         {/* Logo */}
+//         <h1
+//           className="text-2xl font-bold text-yellow-400 cursor-pointer"
+//           onClick={() => scrollToSection("home")}
+//         >
+//           MK Salon
+//         </h1>
+
+//         {/* Desktop Menu */}
+//         <ul className="hidden md:flex gap-8 font-medium">
+//           <li onClick={() => scrollToSection("home")} className="hover:text-yellow-400 cursor-pointer">Home</li>
+//           <li onClick={() => scrollToSection("services")} className="hover:text-yellow-400 cursor-pointer">Services</li>
+//           <li onClick={() => scrollToSection("about")} className="hover:text-yellow-400 cursor-pointer">About</li>
+//           <li onClick={() => scrollToSection("gallery")} className="hover:text-yellow-400 cursor-pointer">Gallery</li>
+//           <li onClick={() => scrollToSection("contact")} className="hover:text-yellow-400 cursor-pointer">Contact</li>
+//         </ul>
+
+//         {/* Book Button */}
+//         <button
+//           onClick={() => scrollToSection("booking")}
+//           className="hidden md:block bg-yellow-500 text-black px-5 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition"
+//         >
+//           Book Now
+//         </button>
+
+//         {/* Mobile Menu Button */}
+//         <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
+//           ☰
+//         </button>
+//       </div>
+
+//       {/* Mobile Menu */}
+//       {open && (
+//         <div className="md:hidden bg-black border-t border-gray-700">
+//           <ul className="flex flex-col items-center gap-6 py-6 text-lg">
+//             <li onClick={() => scrollToSection("home")} className="hover:text-yellow-400">Home</li>
+//             <li onClick={() => scrollToSection("services")} className="hover:text-yellow-400">Services</li>
+//             <li onClick={() => scrollToSection("about")} className="hover:text-yellow-400">About</li>
+//             <li onClick={() => scrollToSection("gallery")} className="hover:text-yellow-400">Gallery</li>
+//             <li onClick={() => scrollToSection("contact")} className="hover:text-yellow-400">Contact</li>
+
+//             <button
+//               onClick={() => scrollToSection("booking")}
+//               className="bg-yellow-500 text-black px-6 py-2 rounded-lg font-semibold"
+//             >
+//               Book Now
+//             </button>
+//           </ul>
+//         </div>
+//       )}
+//     </nav>
+//   );
+// }
 import React, { useState } from "react";
 
 export default function Navbar() {
+
   const [open, setOpen] = useState(false);
 
-  // ✅ scroll function
+  // ✅ Smooth scroll
   const scrollToSection = (id) => {
+
     const section = document.getElementById(id);
+
     if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-      setOpen(false); // close mobile menu
+
+      section.scrollIntoView({
+        behavior: "smooth"
+      });
+
+      setOpen(false);
+
     }
+
   };
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-black/90 backdrop-blur-lg text-white shadow-lg">
+
+    <nav className="fixed w-full top-0 z-50 bg-black/90 backdrop-blur-lg text-white shadow-lg border-b border-gray-800">
+
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
 
         {/* Logo */}
         <h1
-          className="text-2xl font-bold text-yellow-400 cursor-pointer"
+          className="text-2xl font-bold text-yellow-400 cursor-pointer tracking-wide"
           onClick={() => scrollToSection("home")}
         >
           MK Salon
         </h1>
 
+
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-8 font-medium">
-          <li onClick={() => scrollToSection("home")} className="hover:text-yellow-400 cursor-pointer">Home</li>
-          <li onClick={() => scrollToSection("services")} className="hover:text-yellow-400 cursor-pointer">Services</li>
-          <li onClick={() => scrollToSection("about")} className="hover:text-yellow-400 cursor-pointer">About</li>
-          <li onClick={() => scrollToSection("gallery")} className="hover:text-yellow-400 cursor-pointer">Gallery</li>
-          <li onClick={() => scrollToSection("contact")} className="hover:text-yellow-400 cursor-pointer">Contact</li>
+        <ul className="hidden md:flex gap-8 font-medium items-center">
+
+          <li
+            onClick={() => scrollToSection("home")}
+            className="hover:text-yellow-400 cursor-pointer transition"
+          >
+            Home
+          </li>
+
+          <li
+            onClick={() => scrollToSection("services")}
+            className="hover:text-yellow-400 cursor-pointer transition"
+          >
+            Services
+          </li>
+
+          <li
+            onClick={() => scrollToSection("about")}
+            className="hover:text-yellow-400 cursor-pointer transition"
+          >
+            About
+          </li>
+
+          <li
+            onClick={() => scrollToSection("gallery")}
+            className="hover:text-yellow-400 cursor-pointer transition"
+          >
+            Gallery
+          </li>
+
+          <li
+            onClick={() => scrollToSection("contact")}
+            className="hover:text-yellow-400 cursor-pointer transition"
+          >
+            Contact
+          </li>
+
         </ul>
 
-        {/* Book Button */}
-        <button
-          onClick={() => scrollToSection("booking")}
-          className="hidden md:block bg-yellow-500 text-black px-5 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition"
-        >
-          Book Now
-        </button>
+
+        {/* Right Buttons */}
+        <div className="hidden md:flex items-center gap-4">
+
+          {/* Admin Button */}
+          <a
+            href="/admin/login"
+            className="border border-yellow-500 text-yellow-400 px-5 py-2 rounded-lg font-semibold hover:bg-yellow-500 hover:text-black transition duration-300"
+          >
+            Admin
+          </a>
+
+          {/* Book Button */}
+          <button
+            onClick={() => scrollToSection("booking")}
+            className="bg-yellow-500 text-black px-5 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition duration-300 shadow-lg"
+          >
+            Book Now
+          </button>
+
+        </div>
+
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
+        <button
+          className="md:hidden text-3xl"
+          onClick={() => setOpen(!open)}
+        >
           ☰
         </button>
+
       </div>
+
 
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden bg-black border-t border-gray-700">
-          <ul className="flex flex-col items-center gap-6 py-6 text-lg">
-            <li onClick={() => scrollToSection("home")} className="hover:text-yellow-400">Home</li>
-            <li onClick={() => scrollToSection("services")} className="hover:text-yellow-400">Services</li>
-            <li onClick={() => scrollToSection("about")} className="hover:text-yellow-400">About</li>
-            <li onClick={() => scrollToSection("gallery")} className="hover:text-yellow-400">Gallery</li>
-            <li onClick={() => scrollToSection("contact")} className="hover:text-yellow-400">Contact</li>
 
+        <div className="md:hidden bg-black border-t border-gray-700">
+
+          <ul className="flex flex-col items-center gap-6 py-6 text-lg">
+
+            <li
+              onClick={() => scrollToSection("home")}
+              className="hover:text-yellow-400"
+            >
+              Home
+            </li>
+
+            <li
+              onClick={() => scrollToSection("services")}
+              className="hover:text-yellow-400"
+            >
+              Services
+            </li>
+
+            <li
+              onClick={() => scrollToSection("about")}
+              className="hover:text-yellow-400"
+            >
+              About
+            </li>
+
+            <li
+              onClick={() => scrollToSection("gallery")}
+              className="hover:text-yellow-400"
+            >
+              Gallery
+            </li>
+
+            <li
+              onClick={() => scrollToSection("contact")}
+              className="hover:text-yellow-400"
+            >
+              Contact
+            </li>
+
+            {/* Mobile Admin */}
+            <a
+              href="/admin/login"
+              className="border border-yellow-500 text-yellow-400 px-6 py-2 rounded-lg font-semibold"
+            >
+              Admin Login
+            </a>
+
+            {/* Mobile Book */}
             <button
               onClick={() => scrollToSection("booking")}
               className="bg-yellow-500 text-black px-6 py-2 rounded-lg font-semibold"
             >
               Book Now
             </button>
+
           </ul>
+
         </div>
+
       )}
+
     </nav>
+
   );
+
 }
