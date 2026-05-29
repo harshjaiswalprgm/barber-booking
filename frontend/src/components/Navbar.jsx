@@ -33,7 +33,7 @@ export default function Navbar() {
     <nav className="fixed top-5 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl z-50">
 
       {/* MAIN NAVBAR */}
-      <div className="bg-white/60 backdrop-blur-2xl border border-white/30 rounded-[28px] px-6 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
+      <div className="bg-white/80 backdrop-blur-2xl border border-white/30 rounded-[28px] px-6 py-3 shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
 
         <div className="flex items-center justify-between">
 
@@ -47,11 +47,9 @@ export default function Navbar() {
             >
 
               {/* ICON */}
-              <div className="w-11 h-11 rounded-2xl bg-black text-yellow-400 flex items-center justify-center border border-gray-800 shadow-[0_10px_30px_rgba(0,0,0,0.18)] group-hover:scale-105 transition duration-300">
+              <div className="w-11 h-11  bg-black text-yellow-400 flex items-center justify-center border border-gray-800 shadow-[0_10px_30px_rgba(0,0,0,0.18)] group-hover:scale-105 transition duration-300">
 
-                <span className="text-lg">
-                  ✂
-                </span>
+               <img src="/mkunisexsalon.png" alt="MK Unisex Salon Logo"  className="w-full h-full object-cover rounded-3xl"/>
 
               </div>
 
@@ -194,9 +192,9 @@ export default function Navbar() {
             </button>
 
             {/* AVATAR */}
-            <div className="w-11 h-11 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-black font-black shadow-lg">
+            {/* <div className="w-11 h-11 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-black font-black shadow-lg">
               MK
-            </div>
+            </div> */}
 
             {/* BUTTON */}
             <button
