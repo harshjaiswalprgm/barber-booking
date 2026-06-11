@@ -151,7 +151,7 @@ export default function Navbar() {
                       href="/admin/login"
                       className="block px-6 py-4 hover:bg-gray-100 transition font-medium"
                     >
-                      Admin Login
+                      Login
                     </a>
 
                     <button
